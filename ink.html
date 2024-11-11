@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffcccb, #ffb3ba);
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            width: 300px;
+            display: none; /* Hide all pages initially */
+        }
+        .active {
+            display: block; /* Show the active page */
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+            border: 2px solid #ff6f61;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff4c3b;
+        }
+        .message {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .heart {
+            font-size: 50px;
+            color: #ff6f61;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Password Entry -->
+    <div id="page1" class="container active">
+        <h1>Secret Password</h1>
+        <input type="password" id="code" placeholder="The First Day You Met Me." />
+        <button onclick="checkCode()">Submit</button>
+    </div>
+
+    <!-- Page 2: Proposal -->
+    <div id="page2" class="container">
+        <h1>Do you want to be my girlfriend?</h1>
+        <button onclick="response('yes')">Yes 🤍</button>
+        <button onclick="('no')">No 😢</button>
+    </div>
+
+    <!-- Page 3: Response -->
+    <div id="page3" class="container">
+        <div id="message" class="message"></div>
+        
+    </div>
+
+    <script>
+        function checkCode() {
+        const code = document.getElementById('code').value;
+        // Change the password to 03102024
+        if (code === '03102024') {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        } else {
+            alert('Incorrect code. Please try again.');
+        }
+    }
+
+    function response(answer) {
+        document.getElementById('page2').classList.remove('active');
+        
+
+        const messageDiv = document.getElementById('message');
+        if (answer === 'yes') {
+            // Redirect to the celebration page
+            window.location.href = 'celebration.html';
+        } else {
+            messageDiv.innerHTML = '<h2 class="heart">🥲</h2>';
+        }
+    }
+
+    function reset() {
+        document.getElementById('page3').classList.remove('active');
+        document.getElementById('page1').classList.add('active');
+        document.getElementById('code').value = ''; // Clear the input field
+    }
+    </script>
+
+</body>
+</html>
